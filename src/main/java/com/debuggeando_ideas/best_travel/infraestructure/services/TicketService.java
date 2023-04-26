@@ -8,8 +8,10 @@ import com.debuggeando_ideas.best_travel.domain.repository.CustomerRepository;
 import com.debuggeando_ideas.best_travel.domain.repository.FlyRepository;
 import com.debuggeando_ideas.best_travel.domain.repository.TicketRepository;
 import com.debuggeando_ideas.best_travel.infraestructure.abstract_services.ITicketService;
+import com.debuggeando_ideas.best_travel.infraestructure.helpers.BlackListHelper;
 import com.debuggeando_ideas.best_travel.infraestructure.helpers.CustomerHelper;
 import com.debuggeando_ideas.best_travel.util.BestTravelUtil;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -22,22 +24,19 @@ import java.util.UUID;
 @Transactional
 @Service
 @Slf4j
+@AllArgsConstructor
 public class TicketService implements ITicketService {
     private final FlyRepository flyRepository;
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
     private final CustomerHelper customerHelper;
+    private BlackListHelper blackListHelper;
 
-
-    public TicketService(FlyRepository flyRepository, CustomerRepository customerRepository, TicketRepository ticketRepository, CustomerHelper customerHelper) {
-        this.flyRepository = flyRepository;
-        this.customerRepository = customerRepository;
-        this.ticketRepository = ticketRepository;
-        this.customerHelper = customerHelper;
-    }
 
     @Override
     public TicketResponse create(TicketRequest request) {
+        blackListHelper.isInBlackListCustomer(request.getIdClient());
+
         var fly = flyRepository.findById(request.getIdFly()).orElseThrow();
         var customer = customerRepository.findById(request.getIdClient()).orElseThrow();
 
