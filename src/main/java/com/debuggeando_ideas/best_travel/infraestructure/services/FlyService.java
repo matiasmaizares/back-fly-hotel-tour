@@ -5,7 +5,6 @@ import com.debuggeando_ideas.best_travel.domain.entities.FlyEntity;
 import com.debuggeando_ideas.best_travel.domain.repository.FlyRepository;
 import com.debuggeando_ideas.best_travel.infraestructure.abstract_services.IFlyService;
 import com.debuggeando_ideas.best_travel.util.SortType;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,10 +18,13 @@ import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @Service
-@AllArgsConstructor
 public class FlyService implements IFlyService {
 
     private final FlyRepository flyRepository;
+
+    public FlyService(FlyRepository flyRepository) {
+        this.flyRepository = flyRepository;
+    }
 
     @Override
     public Page<FlyResponse> readAll(Integer page, Integer size, SortType sortType) {

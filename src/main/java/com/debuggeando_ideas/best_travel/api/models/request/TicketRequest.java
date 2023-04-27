@@ -1,6 +1,7 @@
 package com.debuggeando_ideas.best_travel.api.models.request;
 
 
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,6 @@ import java.io.Serializable;
 public class TicketRequest implements Serializable {
     private String idClient;
     private Long idFly;
+    @Email(message = "Invalid email")
+    private String email;
 }
