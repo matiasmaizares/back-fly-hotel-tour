@@ -5,7 +5,9 @@ import com.debuggeando_ideas.best_travel.domain.entities.FlyEntity;
 import com.debuggeando_ideas.best_travel.domain.repository.FlyRepository;
 import com.debuggeando_ideas.best_travel.infraestructure.abstract_services.IFlyService;
 import com.debuggeando_ideas.best_travel.util.SortType;
+import com.debuggeando_ideas.best_travel.util.constants.CacheConstants;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -39,7 +41,13 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readLessPrice(BigDecimal price) {
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
         return this.flyRepository.selectLessPrice(price)
                 .stream()
                 .map(this::entityToResponse)
@@ -47,7 +55,13 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readBetweenPrices(BigDecimal min, BigDecimal max) {
+        try{
+            Thread.sleep(3000);
+        }catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }
         return this.flyRepository.selectBetweenPrice(min,max)
                 .stream()
                 .map(this::entityToResponse)
