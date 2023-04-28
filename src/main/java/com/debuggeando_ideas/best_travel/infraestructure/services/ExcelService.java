@@ -1,7 +1,7 @@
 package com.debuggeando_ideas.best_travel.infraestructure.services;
 
-import com.debuggeando_ideas.best_travel.domain.entities.CustomerEntity;
-import com.debuggeando_ideas.best_travel.domain.repository.CustomerRepository;
+import com.debuggeando_ideas.best_travel.domain.entities.jpa.CustomerEntity;
+import com.debuggeando_ideas.best_travel.domain.repository.jpa.CustomerRepository;
 import com.debuggeando_ideas.best_travel.infraestructure.abstract_services.ReportService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,8 +1,8 @@
 package com.debuggeando_ideas.best_travel.infraestructure.helpers;
 
-import com.debuggeando_ideas.best_travel.domain.entities.*;
-import com.debuggeando_ideas.best_travel.domain.repository.ReservationRepository;
-import com.debuggeando_ideas.best_travel.domain.repository.TicketRepository;
+import com.debuggeando_ideas.best_travel.domain.entities.jpa.*;
+import com.debuggeando_ideas.best_travel.domain.repository.jpa.ReservationRepository;
+import com.debuggeando_ideas.best_travel.domain.repository.jpa.TicketRepository;
 import com.debuggeando_ideas.best_travel.infraestructure.services.ReservationService;
 import com.debuggeando_ideas.best_travel.infraestructure.services.TicketService;
 import com.debuggeando_ideas.best_travel.util.BestTravelUtil;

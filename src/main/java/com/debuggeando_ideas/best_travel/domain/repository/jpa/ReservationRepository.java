@@ -1,6 +1,6 @@
-package com.debuggeando_ideas.best_travel.domain.repository;
+package com.debuggeando_ideas.best_travel.domain.repository.jpa;
 
-import com.debuggeando_ideas.best_travel.domain.entities.ReservationEntity;
+import com.debuggeando_ideas.best_travel.domain.entities.jpa.ReservationEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;

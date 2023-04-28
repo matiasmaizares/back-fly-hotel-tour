@@ -33,6 +33,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: debuggeandoideas
       MONGO_INITDB_DATABASE: users
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - ./db/mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro

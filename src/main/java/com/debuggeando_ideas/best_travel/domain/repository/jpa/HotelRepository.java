@@ -1,6 +1,6 @@
-package com.debuggeando_ideas.best_travel.domain.repository;
+package com.debuggeando_ideas.best_travel.domain.repository.jpa;
 
-import com.debuggeando_ideas.best_travel.domain.entities.HotelEntity;
+import com.debuggeando_ideas.best_travel.domain.entities.jpa.HotelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigDecimal;

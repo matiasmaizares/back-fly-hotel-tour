@@ -1,6 +1,6 @@
-package com.debuggeando_ideas.best_travel.domain.repository;
+package com.debuggeando_ideas.best_travel.domain.repository.jpa;
 
-import com.debuggeando_ideas.best_travel.domain.entities.FlyEntity;
+import com.debuggeando_ideas.best_travel.domain.entities.jpa.FlyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,8 +1,8 @@
 package com.debuggeando_ideas.best_travel.infraestructure.services;
 
 import com.debuggeando_ideas.best_travel.api.models.response.HotelResponse;
-import com.debuggeando_ideas.best_travel.domain.entities.HotelEntity;
-import com.debuggeando_ideas.best_travel.domain.repository.HotelRepository;
+import com.debuggeando_ideas.best_travel.domain.entities.jpa.HotelEntity;
+import com.debuggeando_ideas.best_travel.domain.repository.jpa.HotelRepository;
 import com.debuggeando_ideas.best_travel.infraestructure.abstract_services.IHotelService;
 import com.debuggeando_ideas.best_travel.util.SortType;
 import com.debuggeando_ideas.best_travel.util.constants.CacheConstants;
@@ -56,11 +56,6 @@ public class HotelService implements IHotelService {
     @Override
     @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readBetweenPrices(BigDecimal min, BigDecimal max) {
-        try{
-            Thread.sleep(7000);
-        }catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
         return this.hotelRepository.findByPriceBetween(min,max)
                 .stream()
                 .map(this::entityToResponse)
@@ -70,11 +65,6 @@ public class HotelService implements IHotelService {
     @Override
     @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readByRating(Integer rating) {
-        try{
-            Thread.sleep(7000);
-        }catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
         return this.hotelRepository.findByRatingGreaterThan(rating)
                 .stream()
                 .map(this::entityToResponse)

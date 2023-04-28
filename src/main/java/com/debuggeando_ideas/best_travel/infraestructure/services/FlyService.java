@@ -1,8 +1,8 @@
 package com.debuggeando_ideas.best_travel.infraestructure.services;
 
 import com.debuggeando_ideas.best_travel.api.models.response.FlyResponse;
-import com.debuggeando_ideas.best_travel.domain.entities.FlyEntity;
-import com.debuggeando_ideas.best_travel.domain.repository.FlyRepository;
+import com.debuggeando_ideas.best_travel.domain.entities.jpa.FlyEntity;
+import com.debuggeando_ideas.best_travel.domain.repository.jpa.FlyRepository;
 import com.debuggeando_ideas.best_travel.infraestructure.abstract_services.IFlyService;
 import com.debuggeando_ideas.best_travel.util.SortType;
 import com.debuggeando_ideas.best_travel.util.constants.CacheConstants;
@@ -57,11 +57,6 @@ public class FlyService implements IFlyService {
     @Override
     @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readBetweenPrices(BigDecimal min, BigDecimal max) {
-        try{
-            Thread.sleep(3000);
-        }catch (InterruptedException e){
-            throw new RuntimeException(e);
-        }
         return this.flyRepository.selectBetweenPrice(min,max)
                 .stream()
                 .map(this::entityToResponse)

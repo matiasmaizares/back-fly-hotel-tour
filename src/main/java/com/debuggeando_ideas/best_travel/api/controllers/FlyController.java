@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -27,6 +28,9 @@ public class FlyController {
             @RequestHeader(required = false) SortType sortType){
 
         if(Objects.isNull(sortType)) sortType= SortType.NONE;
+
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getAuthorities());
 
         var response = this.flyService.readAll(page,size,sortType);
         return response.isEmpty() ? ResponseEntity.noContent().build()

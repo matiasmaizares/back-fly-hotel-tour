@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -32,6 +33,8 @@ public class TicketController {
     )
     @PostMapping
     public ResponseEntity<TicketResponse> post(@Valid @RequestBody TicketRequest request){
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getAuthorities());
         return ResponseEntity.ok(ticketService.create(request));
     }
 
